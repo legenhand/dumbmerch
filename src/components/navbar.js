@@ -1,7 +1,32 @@
 import logo from '../assets/logo.png';
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
+import {statusLogin} from "../dummydata/dummydata";
+import {useState} from "react";
+
+
 
 function Navbar() {
+    const [isLogin, setIsLogin] = useState(statusLogin.status);
+    function handleClick(e){
+        statusLogin.status = false;
+        setIsLogin(false);
+    }
+    let navTambahan = '';
+    if(isLogin){
+        navTambahan = <div className="d-flex"><NavLink className={({ isActive }) =>
+            isActive ? "nav-link me-4 text-primary" : "nav-link me-4 text-white" } to="/category">Category</NavLink>
+            <NavLink className={({ isActive }) =>
+                isActive ? "nav-link me-4 text-primary" : "nav-link me-4 text-white" } to="/product">Product</NavLink>
+            <NavLink className={({ isActive }) =>
+                isActive ? "nav-link me-4 text-primary" : "nav-link me-4 text-white" } to="/profile">Profile</NavLink>
+
+            <button type="button" className="btn nav-link me-4 text-white" onClick={handleClick}>Logout</button>
+        </div>;
+    }else{
+        navTambahan = <NavLink className={({ isActive }) =>
+            isActive ? "nav-link me-4 text-primary" : "nav-link me-4 text-white" } to="/login">Login</NavLink>
+    }
+
     return (
         <nav className="navbar navbar-expand-lg bg-black">
             <div className="container-fluid" style={{
@@ -15,12 +40,9 @@ function Navbar() {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse ms-auto" id="navbarSupportedContent">
-
-                    <Link className="nav-link ms-auto text-white" to="/complain">Complain</Link>
-                    <Link className="nav-link mx-4 text-white" to="/category">Category</Link>
-                    <Link className="nav-link me-4 text-white" to="/product">Product</Link>
-                    <Link className="nav-link me-4 text-white" to="/profile">Profile</Link>
-                    <Link className="nav-link me-4 text-white" to="/login">Login</Link>
+                    <NavLink className={({ isActive }) =>
+                        isActive ? "nav-link ms-auto me-4 text-primary" : "nav-link ms-auto me-4 text-white" } to="/complain">Complain</NavLink>
+                    {navTambahan}
                 </div>
             </div>
         </nav>

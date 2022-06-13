@@ -2,6 +2,7 @@ import React from 'react';
 import logo from '../assets/logo.png';
 import {dataTransaction} from "../dummydata/dummydata";
 import {convertToRupiah} from "../helper/helper";
+import {Link} from "react-router-dom";
 
 function ListTransaction(props) {
     return (
@@ -13,7 +14,8 @@ function ListTransaction(props) {
                                 <img src={data.image} alt="" height="100px" width="100px"/>
                             </div>
                             <div className="d-flex flex-column me-auto my-2">
-                                <span className="text-primary fs-5">{data.name}</span>
+                                <Link to={'/detail_transaction/' + index} className="text-decoration-none"><span className="text-primary fs-5 ">{data.name}</span></Link>
+
                                 <span className="text-primary">{data.date}</span>
                                 <span className="text-white">Price : {convertToRupiah(data.price)}</span> <br/>
                                 <span className="text-white fw-bolder">Sub Total : {convertToRupiah(data.price * data.qty)}</span>

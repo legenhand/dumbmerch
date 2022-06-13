@@ -2,6 +2,8 @@ import mouse from "../assets/mouse.jpg";
 import keyboard from "../assets/keyboard.jpg";
 import photoprofile from "../assets/photoprofile.jpg"
 
+export let statusLogin = {'status': true};
+
 export let dataProduct = [{
     name : 'Mouse',
     desc : ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero nesciunt possimus temporibus totam, ut vero.     ',
