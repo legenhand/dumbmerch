@@ -26,9 +26,11 @@ root.render(
               <Route path="profile" element={<Profile />} />
               <Route path="login" element={<Login />} />
               <Route path="register" element={<Register />} />
-              <Route path="detail" element={<DetailProduct />} />
+              <Route path="detail/:id" element={<DetailProduct />} />
               <Route path="edit_product" element={<EditProduct />} />
               <Route path="edit_category" element={<EditCategory />} />
+              <Route path="edit_category/:id" element={<EditCategory />} />
+              <Route path="edit_product/:id" element={<EditProduct />} />
           </Routes>
       </BrowserRouter>
   </React.StrictMode>

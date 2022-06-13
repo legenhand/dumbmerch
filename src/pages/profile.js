@@ -14,7 +14,6 @@ function Profile(props) {
                         <MyProfile/>
                         <MyTransaction/>
                 </div>
-
             </div>
         </div>
     );

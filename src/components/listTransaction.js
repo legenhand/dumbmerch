@@ -1,27 +1,31 @@
 import React from 'react';
-import mouse from '../assets/mouse.jpg';
-import logo from '../assets/logo.png'
+import logo from '../assets/logo.png';
+import {dataTransaction} from "../dummydata/dummydata";
+import {convertToRupiah} from "../helper/helper";
+
 function ListTransaction(props) {
     return (
         <div className="container-fluid">
-            <div className="row bg-grey" style={{height: '22vh'}}>
-                <div className="col">
-                    <div className="d-flex flex-row">
-                        <div className="my-auto me-3">
-                            <img src={mouse} alt="" height="100px"/>
-                        </div>
-                        <div className="d-flex flex-column me-auto my-2">
-                            <span className="text-primary fs-5">Mouse</span>
-                            <span className="text-primary">Saturday, 14 Juli 2022</span>
-                            <span className="text-white">Price : Rp. 500.000</span> <br/>
-                            <span className="text-white fw-bolder">Sub Total : 500.000</span>
-                        </div>
-                        <div className="d-flex me-2">
-                            <img src={logo} alt="" height="100px" className="my-auto"/>
+            {dataTransaction.map((data,index) => <div className="row bg-grey my-2" style={{height: '22vh'}}>
+                    <div className="col" key={index}>
+                        <div className="d-flex flex-row">
+                            <div className="my-auto me-3">
+                                <img src={data.image} alt="" height="100px" width="100px"/>
+                            </div>
+                            <div className="d-flex flex-column me-auto my-2">
+                                <span className="text-primary fs-5">{data.name}</span>
+                                <span className="text-primary">{data.date}</span>
+                                <span className="text-white">Price : {convertToRupiah(data.price)}</span> <br/>
+                                <span className="text-white fw-bolder">Sub Total : {convertToRupiah(data.price * data.qty)}</span>
+                            </div>
+                            <div className="d-flex me-2">
+                                <img src={logo} alt="" height="100px" className="my-auto"/>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            )}
+
         </div>
     );
 }

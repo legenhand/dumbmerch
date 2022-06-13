@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../assets/logo.png';
 import LoginForm from "../components/loginForm";
 import LoginregisterDetail from "../components/loginregisterDetail";
 function Login(props) {

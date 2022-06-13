@@ -1,32 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {dataProduct} from "../dummydata/dummydata";
+import {Link} from "react-router-dom";
+import {convertToRupiah} from "../helper/helper";
 
 function TableProduct(props) {
-    const productList = [{
-        photo: 'Mouse.jpg',
-        name: 'Mouse',
-        desc: 'lorem ipsum blablabaaa',
-        price: 500000,
-        qty: 600
-    },{
-        photo: 'Mouse.jpg',
-        name: 'Mouse',
-        desc: 'lorem ipsum blablabaaa',
-        price: 500000,
-        qty: 600
-    },{
-        photo: 'Mouse.jpg',
-        name: 'Mouse',
-        desc: 'lorem ipsum blablabaaa',
-        price: 500000,
-        qty: 600
-    },{
-        photo: 'Mouse.jpg',
-        name: 'Mouse',
-        desc: 'lorem ipsum blablabaaa',
-        price: 500000,
-        qty: 600
-    }];
+    const [data, setData] = useState(dataProduct);
     let count = 0;
+
+    function handleRemove(index){
+        setData((prevState)=>{
+            let items = [...prevState];
+            items.splice(index, 1);
+            return items;
+        })
+        dataProduct.splice(index,1);
+    }
     return (
         <div className="container-fluid bg-black p-5" style={{
             height: "88vh"
@@ -35,9 +23,9 @@ function TableProduct(props) {
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Photo</th>
+                        <th className="text-truncate w-25">Photo</th>
                         <th>Product Name</th>
-                        <th>Product Desc</th>
+                        <th className="w-25">Product Desc</th>
                         <th>Price</th>
                         <th>Qty</th>
                         <th>Action</th>
@@ -45,27 +33,28 @@ function TableProduct(props) {
                 </thead>
                 <tbody>
                 {
-                    productList.map((data,index)=>{
+                    data.map((data,index)=>{
                         count += 1;
                         return <tr key={index}>
                             <td>{count}</td>
-                            <td>{data.photo}</td>
+                            <td>{data.image}</td>
                             <td>{data.name}</td>
                             <td>{data.desc}</td>
-                            <td>{data.price}</td>
-                            <td>{data.qty}</td>
-                            <td><button type="button" className="btn btn-success w-25 bg-success me-3 my-2">
-                                Edit
-                            </button>
-                                <button type="button" className="btn btn-danger bg-danger w-25 my-2">
+                            <td>{convertToRupiah(data.price)}</td>
+                            <td>{data.stock}</td>
+                            <td>
+                                <Link to={"/edit_product/" + index}>
+                                    <button type="button" className="btn btn-success w-50 bg-success me-3 my-2">
+                                        Edit
+                                    </button>
+                                </Link>
+                                <button type="button" className="btn btn-danger bg-danger w-50 my-2" onClick={() => handleRemove(index)}>
                                     Delete
                                 </button>
                             </td>
                         </tr>
                     })}
                 </tbody>
-
-
             </table>
         </div>
     );
