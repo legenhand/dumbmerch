@@ -9,6 +9,10 @@ import ProductList from "./pages/productList";
 import Complain from "./pages/complain";
 import Profile from "./pages/profile";
 import Login from "./pages/login";
+import Register from "./pages/register";
+import DetailProduct from "./pages/detailProduct";
+import EditProduct from "./pages/editProduct";
+import EditCategory from "./pages/editCategory";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,6 +25,10 @@ root.render(
               <Route path="complain" element={<Complain />} />
               <Route path="profile" element={<Profile />} />
               <Route path="login" element={<Login />} />
+              <Route path="register" element={<Register />} />
+              <Route path="detail" element={<DetailProduct />} />
+              <Route path="edit_product" element={<EditProduct />} />
+              <Route path="edit_category" element={<EditCategory />} />
           </Routes>
       </BrowserRouter>
   </React.StrictMode>
