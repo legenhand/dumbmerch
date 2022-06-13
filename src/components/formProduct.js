@@ -21,7 +21,6 @@ function FormProduct(props) {
             ...dataTemp,
             [name]: value,
         });
-        console.log(dataTemp)
     }
 
     let navigate = useNavigate();
